@@ -1,0 +1,49 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Society Dashboard</title>
+</head>
+
+<body>
+  <h1>Society Dashboard</h1>
+
+  <% if (!user) { %>
+  <h2>Login</h2>
+  <form id="loginForm" action="/api/login" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <button type="submit">Login</button>
+  </form>
+
+  <h2>Register</h2>
+  <form id="registrationForm" action="/api/register" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <button type="submit">Register</button>
+  </form>
+  <% } else { %>
+  <h2>Welcome <%= user.username %></h2>
+  <button id="logoutBtn">Logout</button>
+
+  <h2>Societies Data</h2>
+  <canvas id="societiesChart"></canvas>
+  <% } %>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+
+</html>
